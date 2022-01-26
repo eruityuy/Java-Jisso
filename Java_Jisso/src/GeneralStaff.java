@@ -42,9 +42,11 @@ public class GeneralStaff extends Staff {
 	}
 
 	/**
-	 * フィールド変数name, age, roleを表示するメソッド
+	 * フィールド変数情報のgetメソッド
+	 * @return String フィールド変数情報を戻す
 	 */
-	public void getInformation() {
-		System.out.println(getName() + "\t\t" + getAge() + "歳\t\t" + getRole());
+	public String getInformation() {
+		String information = getName() + "\t\t" + getAge() + "歳\t\t" + getRole();
+		return information;
 	}
 }

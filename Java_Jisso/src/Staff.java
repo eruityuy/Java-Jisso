@@ -1,6 +1,5 @@
 /**
- * @author Daisuke Kusuda 
- * Staffを作成および名前と年齢情報を管理するクラス
+ * @author Daisuke Kusuda Staffを作成および名前と年齢情報を管理するクラス
  */
 public class Staff {
 	// --------------------フィールド変数--------------------
@@ -59,9 +58,11 @@ public class Staff {
 	}
 
 	/**
-	 * Staffのフィールド変数を表示するメソッド
+	 * フィールド変数情報のgetメソッド
+	 * @return String フィールド変数情報を戻す
 	 */
-	public void getInformation() {
-		System.out.println(this.name + "\t\t" + this.age + "歳");
+	public String getInformation() {
+		String information = this.name + "\t\t" + this.age + "歳";
+		return information;
 	}
 }

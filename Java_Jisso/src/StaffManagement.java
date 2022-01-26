@@ -14,7 +14,8 @@ public class StaffManagement {
 	//--------------------フィールド変数--------------------
 	// Staffクラスのインスタンスを格納するリスト
 	List<Staff> staffList = new ArrayList<Staff>();
-	
+	// InputDataインスタンスの生成
+	InputData id = new InputData();
 	
 	//--------------------メソッド--------------------
 	/**
@@ -23,23 +24,16 @@ public class StaffManagement {
 	public void logicMenu() throws BusinessException { 
 		while(true) {
 			// InputDataクラスのinputIntを実行（0 or 1の入力を促し入力値を戻す）
-			int input = new InputData().inputInt(ID_MESSAGE.N0001, 0, 1);
+			int input = id.inputInt(ID_MESSAGE.N0001, 0, 1);
 			// 0:社員追加のときaddStaff実行
 			if (input == 0) {
 				addStaff();
-				// 社員情報一覧を表示
-				SystemMessage.outMessage(ID_MESSAGE.N0007);
-				// 追加した社員情報を列挙表示
-				for (int i = 0; i < staffList.size(); i++) {
-					staffList.get(i).getInformation();
-				}
 				continue;
 			}
 			// 1:終了のときループ処理終了
 			if (input == 1) {
 				break;
 			}
-			
 		}
 	}
 	
@@ -48,7 +42,7 @@ public class StaffManagement {
 	 */
 	private void addStaff() throws BusinessException {
 		// InputDataクラスのinputIntを実行（0 or 1）の入力を促し入力値を戻す
-		int input = new InputData().inputInt(ID_MESSAGE.N0002, 0, 1);
+		int input = id.inputInt(ID_MESSAGE.N0002, 0, 1);
 		// 0:一般職社員の場合
 		if (input == 0) {
 			addGeneralStaff();
@@ -57,6 +51,12 @@ public class StaffManagement {
 		if (input == 1) {
 			addManagementStaff();
 		}
+		// 社員情報一覧を表示
+		SystemMessage.outMessage(ID_MESSAGE.N0007);
+		// 追加した社員情報を列挙表示
+		for (int i = 0; i < staffList.size(); i++) {
+			System.out.println(staffList.get(i).getInformation());
+		}
 	}
 	
 	/**
@@ -64,11 +64,11 @@ public class StaffManagement {
 	 */
 	private void addGeneralStaff() throws BusinessException {
 		// name 名前を入力（10文字以内）
-		String inputName = new InputData().inputString(ID_MESSAGE.N0003, 10);
+		String inputName = id.inputString(ID_MESSAGE.N0003, 10);
 		// age 年齢を入力（0以上）
-		int inputAge = new InputData().inputInt(ID_MESSAGE.N0004, 0);
+		int inputAge = id.inputInt(ID_MESSAGE.N0004, 0);
 		// role 職種を入力(5文字以内)
-		String inputRole = new InputData().inputString(ID_MESSAGE.N0005, 5);
+		String inputRole = id.inputString(ID_MESSAGE.N0005, 5);
 		// GenralStaffインスタンスを生成しstaffListに追加
 		staffList.add(new GeneralStaff(inputName, inputAge, inputRole));
 	}
@@ -78,11 +78,11 @@ public class StaffManagement {
 	 */
 	private void addManagementStaff() throws BusinessException {
 		// name 名前を入力（10文字以内）
-		String inputName = new InputData().inputString(ID_MESSAGE.N0003, 10);
+		String inputName = id.inputString(ID_MESSAGE.N0003, 10);
 		// age 年齢を入力（0以上）
-		int inputAge = new InputData().inputInt(ID_MESSAGE.N0004, 0);
+		int inputAge = id.inputInt(ID_MESSAGE.N0004, 0);
 		// officialTitle 役職を入力（5文字以内）
-		String inputOfficialTitle = new InputData().inputString(ID_MESSAGE.N0006, 5);
+		String inputOfficialTitle = id.inputString(ID_MESSAGE.N0006, 5);
 		// ManagementStaffインスタンスを生成しstaffListに追加
 		staffList.add(new ManagementStaff(inputName, inputAge, inputOfficialTitle));
 	}
