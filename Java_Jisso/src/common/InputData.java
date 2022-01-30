@@ -95,8 +95,8 @@ public class InputData {
 					}
 					// ***** 例外処理 *****
 				} catch (NumberFormatException objExp) {
-					// int変換例外時、エラーコードE0002を呼び出しプログラム終了
-					throw new BusinessException(SystemMessage.getMessage(ID_MESSAGE.E0002));
+					// int変換例外時にエラーコードE0001を呼び出しプログラム終了
+					throw new BusinessException(SystemMessage.getMessage(ID_MESSAGE.E0001));
 				}
 			}
 			// ***** 例外処理 *****

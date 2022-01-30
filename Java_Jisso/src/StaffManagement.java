@@ -53,9 +53,9 @@ public class StaffManagement {
 		}
 		// 社員情報一覧を表示
 		SystemMessage.outMessage(ID_MESSAGE.N0007);
-		// 追加した社員情報を列挙表示
-		for (int i = 0; i < staffList.size(); i++) {
-			System.out.println(staffList.get(i).getInformation());
+		// 追加した社員情報を列挙表示 
+		for (Staff staff : staffList) {
+			System.out.println(staff.getInformation());
 		}
 	}
 	
