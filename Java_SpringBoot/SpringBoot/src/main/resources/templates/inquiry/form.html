@@ -6,24 +6,25 @@
 </head>
 <body>
 <h1>お問合せフォーム</h1>
-<form  method="post" th:action="@{/confirm}" th:object="${inquiryForm}">
+<form  method="post" th:action="@{/inquiry/confirm}" th:object="${inquiryForm}"> 
+<!-- th:object="${inquiryForm}" Java クラスをインスタンス化 InquiryFormをインスタンス化 -->
 
 <p>
 <label>氏名：</label>
-<input type="text" name="userName"><br>
-<label th:if="${#fields.hasErrors('email')}" th:errors="*{userName}">必須項目です</label>
+<input type="text" name="userName" th:text="${inquiryForm.userName}"><br>
+<label th:if="${#fields.hasErrors('userName')}" th:errors="*{userName}">必須項目です</label>
 </p>
 
 <p>
 <label>Email：</label>
-<input type="text" name="email"><br>
+<input type="text" name="email" th:text="${inquiryForm.email}"><br>
 <label th:if="${#fields.hasErrors('email')}" th:errors="*{email}">必須項目です</label>
 </p>
 
 <p>
 <label>内容：</label>
-<textarea  name="context" rows="4"></textarea><br>
-<label th:if="${#fields.hasErrors('email')}" th:errors="*{context}">必須項目です</label>
+<textarea  name="context" rows="4" th:text="${inquiryForm.context}"></textarea><br>
+<label th:if="${#fields.hasErrors('context')}" th:errors="*{context}">必須項目です</label>
 </p>
 
 <p>

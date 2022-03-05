@@ -3,7 +3,7 @@ package app.inquiry;
 import java.io.Serializable;
 
 import javax.validation.constraints.Email;
-import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
 
 import org.hibernate.validator.constraints.Length;
 
@@ -16,17 +16,17 @@ import lombok.Data;
 @Data
 public class InquiryForm implements Serializable {
 	// ユーザー名
-	@NotEmpty(message = "20文字以下で入力してください")
+	@NotNull(message = "20文字以下で入力してください")
 	@Length(max=20, message = "20文字以下で入力してください")
 	private String userName;
 	
 	// Email
-	@NotEmpty(message = "Emailの形式で入力してください")
+	@NotNull(message = "Emailの形式で入力してください")
 	@Email(message = "Emailの形式で入力してください")
 	private String email;
 	
 	// 内容
-	@NotEmpty(message = "必須項目です")
+	@NotNull(message = "必須項目です")
 	private String context;
 	
 	/**

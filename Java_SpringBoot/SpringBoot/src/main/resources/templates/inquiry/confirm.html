@@ -6,17 +6,20 @@
 </head>
 <body>
 <h1>お問合せ内容確認</h1>
-<form action="@{/confirm}" method="post">
 
+<form th:action="@{inquiry/form}" method="post" th:object="${inquiryForm}">
 <p>入力内容を確認してください</p>
 
-<h2 th:text="${userName}">氏名</h2>
+<h2 th:text="${inquiryForm.userName}">氏名</h2>
 
-<h2 th:text="${email}">Email</h2>
+<h2 th:text="${inquiryForm.email}">Email</h2>
 
-<h2 th:text="${context}">内容</h2>
+<h2 th:text="${inquiryForm.context}">内容</h2>
 
-<button type="button" onclick="history.back()">戻る</button><br>
+<input type="hidden" name="back" th:value="${inquiryForm.userName}">
+</form>
+
+<form th:action="@{inquiry/form}" method="post" th:object="${inquiryForm.userName}">
 <input type="submit" value="確定">
 </form>
 </body>
