@@ -6,22 +6,25 @@
 </head>
 <body>
 <h1>お問合せ内容確認</h1>
-
-<form th:action="@{inquiry/form}" method="post" th:object="${inquiryForm}">
-<p>入力内容を確認してください</p>
-
-<h2 th:text="${inquiryForm.userName}">氏名</h2>
-
-<h2 th:text="${inquiryForm.email}">Email</h2>
-
-<h2 th:text="${inquiryForm.context}">内容</h2>
-
-<input type="hidden" name="back" th:value="${inquiryForm.userName}">
-</form>
-
-<form th:action="@{inquiry/form}" method="post" th:object="${inquiryForm.userName}">
-<input type="submit" value="確定">
-</form>
+<div th:object="${inquiryForm}">
+  <p th:text="*{userName}"></p>
+  <p th:text="*{email}"></p>
+  <p th:text="*{context}"></p>
+  <!-- お問い合わせ内容確定処理 -->
+  <form method="post" action="#" th:action="@{/inquiry/complete}">
+    <input type="hidden" name="userName" th:value="*{userName}">
+    <input type="hidden" name="email" th:value="*{email}">
+    <input type="hidden" name="context" th:value="*{context}">
+    <input type="submit" value="確定">
+  </form>
+  <!-- お問い合わせフォーム画面に戻る用 -->
+  <form method="post" action="#" th:action="@{/inquiry/form}">
+    <input type="hidden" name="userName" th:value="*{userName}">
+    <input type="hidden" name="email" th:value="*{email}">
+    <input type="hidden" name="context" th:value="*{context}">
+    <input type="submit" value="戻る">
+  </form>
+</div>
 </body>
 </html>
 

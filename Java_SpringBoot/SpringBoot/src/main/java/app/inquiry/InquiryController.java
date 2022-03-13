@@ -6,6 +6,7 @@ import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 
 @Controller
@@ -22,8 +23,14 @@ public class InquiryController {
         return "inquiry/form";
     }
 	
+	/**
+	 * URLからのリクエストをPOSTしform.htmlを呼ぶ
+	 * @param inquiryForm
+	 * @param model
+	 * @return inquiry/form.html
+	 */
 	@PostMapping("/form")
-	public String postForm(Model model) {
+	public String postForm(InquiryForm inquiryForm, Model model) {
 		return "inquiry/form";
 	}
 
@@ -32,7 +39,7 @@ public class InquiryController {
 	 * @param inquiryForm InquiryFormのインスタンス
 	 * @param error 入力フォームのバリデーション
 	 * @param model confirm.htmlへのAttribute
-	 * @return inquiry/confrim.html
+	 * @return inquiry/conform.html
 	 */
 	@PostMapping("/confirm")
 	public String postConfirm(
@@ -43,5 +50,12 @@ public class InquiryController {
 			return "inquiry/form";
 		}
 		return "inquiry/confirm";
+	}
+	
+	// リダイレクト時、フラッシュメッセージを表示
+	@PostMapping("/complete")
+	public String completeForm(RedirectAttributes redirectAttirbutes) {
+		redirectAttirbutes.addFlashAttribute("pushedBtn", "登録が成功しました。");
+		return "redirect:/inquiry/form";
 	}
 }

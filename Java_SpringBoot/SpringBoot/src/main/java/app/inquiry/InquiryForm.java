@@ -16,12 +16,12 @@ import lombok.Data;
 @Data
 public class InquiryForm implements Serializable {
 	// ユーザー名
-	@NotNull(message = "20文字以下で入力してください")
+	@NotNull(message = "必須項目です")
 	@Length(max=20, message = "20文字以下で入力してください")
 	private String userName;
 	
 	// Email
-	@NotNull(message = "Emailの形式で入力してください")
+	@NotNull(message = "必須項目です")
 	@Email(message = "Emailの形式で入力してください")
 	private String email;
 	
